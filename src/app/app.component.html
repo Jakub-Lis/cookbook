@@ -1,0 +1,13 @@
+<nav class="grid">
+  <h1 [routerLink]='["/"]'>
+    {{title}}
+  </h1>
+  <ul class="links__subpages">
+    <li><a [routerLink]='["/kategorie"]' [routerLinkActive] = '["active"]'>Kategorie</a></li>
+    <li><a [routerLink]='["/dodanie-przepisu"]' [routerLinkActive] = '["active"]'>Dodawanie przepisu</a></li>
+  </ul>
+</nav>
+<router-outlet></router-outlet>
+
+
+

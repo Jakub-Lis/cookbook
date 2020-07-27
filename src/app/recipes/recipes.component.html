@@ -1,0 +1,6 @@
+<div class="grid">
+  <app-recipe-cover
+    *ngFor="let recipe of recipeList | async"
+    [recipe]="recipe"
+  ></app-recipe-cover>
+</div>

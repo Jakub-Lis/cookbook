@@ -1,0 +1,18 @@
+
+.active {
+  color: red;
+}
+.grid {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+.grid *
+{
+  margin: 25px 15px;
+  width:350px;
+}
+
+* {
+  box-sizing: border-box;
+}

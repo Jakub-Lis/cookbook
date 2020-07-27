@@ -1,0 +1,30 @@
+
+<div class="row" *ngIf="recipeDetail | async as recipe">
+  <div class="col s4"><img [src]="recipe.poster" /></div>
+  <table class="col s8">
+    <tbody>
+      <tr>
+        <td>Tytuł</td>
+        <td>{{ recipe.title }}</td>
+      </tr>
+      <tr>
+        <td>Kategoria:</td>
+        <td>{{ recipe.category }}</td>
+      </tr>
+      <tr>
+        <td>Czas</td>
+        <td>{{ recipe.time }}</td>
+      </tr>
+      <tr>
+        <td>Składniki</td>
+        <td>{{ recipe.ingridiens }}</td>
+      </tr>
+      <tr>
+        <td>Opis:</td>
+        <td>{{ recipe.desc }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <button class="btn black" (click)="goToRecipes()">Wróc</button>
+</div>
+<app-change-recipe-form></app-change-recipe-form>

@@ -1,0 +1,32 @@
+<div >
+  <div *ngIf="id | async as recipe">
+    <span>ID</span>
+    <input  placeholder="{{recipe.id}}" [(ngModel)]="Recipe.id">
+  </div>
+  <table>
+    <tbody>
+      <tr>
+        <td>title</td>
+        <input [(ngModel)]='Recipe.title'>
+        <td>poster</td>
+        <input [(ngModel)]='Recipe.poster'>
+        <td>category</td>
+        <select [(ngModel)]='Recipe.category'>
+          <option value="Śniadanie">Śniadanie</option>
+          <option value="Lunch">Lunch</option>
+          <option value="Obiad">Obiad</option>
+          <option value="Desery">Desery</option>
+          <option value="Kolacja">Kolacja</option>
+        </select>
+        <td>time</td>
+        <input [(ngModel)]='Recipe.time'>
+        <td>ingridiens</td>
+        <input [(ngModel)]='Recipe.ingridiens'>
+        <td>desc</td>
+        <input [(ngModel)]='Recipe.desc'>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<app-button (clickButton)='changeRecipe()'><span>Zmień</span></app-button>
+
