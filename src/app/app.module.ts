@@ -1,6 +1,7 @@
+import { ChangeRecipeFormComponent } from './recipe-form/change-recipe-form/change-recipe-form.component';
 
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -13,8 +14,6 @@ import { RecipesDetailsComponent } from './recipes/recipes-details/recipes-detai
 import { RecipeCoverComponent } from './recipe-cover/recipe-cover.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { RecipesInCategoriesComponent } from './categories/recipes-in-categories/recipes-in-categories.component';
-import { ChangeRecipeFormComponent } from './recipe-form/change-recipe-form/change-recipe-form.component';
-
 
 @NgModule({
   declarations: [
@@ -33,7 +32,8 @@ import { ChangeRecipeFormComponent } from './recipe-form/change-recipe-form/chan
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

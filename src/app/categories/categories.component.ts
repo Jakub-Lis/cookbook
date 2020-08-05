@@ -8,10 +8,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./categories.component.css']
 })
 export class CategoriesComponent implements OnInit {
-  categories: Observable<string[]>;
+  categories$: Observable<string[]>;
   constructor(private http: HttpService) {}
 
   ngOnInit(): void {
-    this.categories = this.http.getCategories();
+    this.categories$ = this.http.getCategories();
   }
 }

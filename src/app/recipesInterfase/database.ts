@@ -4,6 +4,6 @@ export interface RecipeInterface {
   poster: string;
   category: string;
   time: string;
-  ingridiens: string;
+  ingridiens: Array<{name: string}>;
   desc: string;
 }

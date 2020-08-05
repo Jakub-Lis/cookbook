@@ -1,9 +1,9 @@
-import { Component, EventEmitter, Output, OnInit } from '@angular/core';
+import { Component, Output, OnInit } from '@angular/core';
 import { RecipeInterface } from '../recipesInterfase/database';
 import { HttpService } from '../recipesInterfase/service.service';
-import { ParamMap, ActivatedRoute, Router } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+
 
 
 @Component({
@@ -11,39 +11,56 @@ import { Observable } from 'rxjs';
   templateUrl: './recipe-form.component.html',
   styleUrls: ['./recipe-form.component.css']
 })
-export class RecipeFormComponent{
+export class RecipeFormComponent implements OnInit{
+
+  constructor(private http: HttpService, private router: Router, private recipeForm: FormBuilder) {}
+
 @Output()
 showForm = false;
 
-id: RecipeInterface;
-newRecipe: RecipeInterface = {
-  title: '',
-  poster: '',
-  category: '',
-  time: '',
-  ingridiens: '',
-  desc: '',
-};
-constructor(private http: HttpService, private router: Router) {}
+recipe: FormGroup;
+newRecipe: RecipeInterface;
 
-
-
-
-addRecipe(): void
-{
-  this.http.postRecipe(this.newRecipe).subscribe();
-  this.newRecipe = {
+ngOnInit(): void {
+  this.recipe = this.recipeForm.group({
     title: '',
     poster: '',
     category: '',
     time: '',
-    ingridiens: '',
-    desc: '',
-  };
+    ingridiens: this.recipeForm.array([this.createItem()]),
+    desc: ''
+
+  });
+}
+
+createItem(): any {
+  return this.recipeForm.group({
+    name: '',
+  });
+}
+
+addNext(): void {
+  (this.recipe.controls.ingridiens as FormArray).push(this.createItem());
+
+}
+
+addRecipe(): void
+{
+  this.newRecipe = this.recipe.value;
+  this.http.postRecipe(this.newRecipe).subscribe();
+
 }
 
 goToRecipes(): void {
   this.router.navigate(['/']);
 }
+
+
+submit(): void{
+
+  this.newRecipe = this.recipe.value;
+  console.log(this.newRecipe);
+}
+
 
 }

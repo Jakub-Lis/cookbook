@@ -1,9 +1,9 @@
-import { async } from '@angular/core/testing';
-
 import { HttpService } from './../recipesInterfase/service.service';
 import { RecipeInterface} from '../recipesInterfase/database';
-import { Component, OnInit, OnChanges, Input } from '@angular/core';
-import { Subscription, Subject, Observable } from 'rxjs';
+import { Component, OnInit} from '@angular/core';
+import { Observable, combineLatest, of } from 'rxjs';
+import { FormControl } from '@angular/forms';
+import { map, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-recipes',
@@ -12,12 +12,21 @@ import { Subscription, Subject, Observable } from 'rxjs';
 })
 export class RecipesComponent implements OnInit{
 
-  constructor(private http: HttpService) {}
+  recipeList$: Observable<RecipeInterface[]>;
+  filteredRecipes$: Observable<RecipeInterface[]>;
+  filter: FormControl;
+  filter$: Observable<string>;
 
- recipeList: Observable<RecipeInterface[]>;
+  constructor(private http: HttpService) {
 
-   ngOnInit(): void {
-    this.recipeList = this.http.getRecipes();
   }
 
+   ngOnInit(): void {
+    this.recipeList$ = this.http.getRecipes();
+    this.filter = new FormControl('');
+    this.filter$ = this.filter.valueChanges.pipe(startWith(''));
+    this.filteredRecipes$ = combineLatest(this.recipeList$, this.filter$).pipe(
+      map(([recipes, filterString]) => recipes.filter(recipe => recipe.title.toLowerCase().indexOf(filterString.toLowerCase()) !== -1))
+    );
+  }
 }

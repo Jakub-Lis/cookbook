@@ -1,5 +1,5 @@
 import { RecipeInterface } from './../recipesInterfase/database';
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { HttpService } from '../recipesInterfase/service.service';
 
 @Component({

@@ -1,6 +1,7 @@
+<input type="text" [formControl]="filter" placeholder="Szukaj przepisu...">
 <div class="grid">
   <app-recipe-cover
-    *ngFor="let recipes of recipesInCategories | async"
+    *ngFor="let recipes of filteredRecipes$ | async"
     [recipe]="recipes"
   ></app-recipe-cover>
 </div>

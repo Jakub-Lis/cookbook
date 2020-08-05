@@ -1,28 +1,38 @@
-<div>
-  <table>
-    <tbody>
-      <tr>
-        <td>title</td>
-        <input [(ngModel)]='newRecipe.title'>
-        <td>poster</td>
-        <input [(ngModel)]='newRecipe.poster'>
-        <td>category</td>
-        <select [(ngModel)]='newRecipe.category'>
-          <option value="Śniadanie">Śniadanie</option>
-          <option value="Lunch">Lunch</option>
-          <option value="Obiad">Obiad</option>
-          <option value="Desery">Desery</option>
-          <option value="Kolacja">Kolacja</option>
-        </select>
-        <td>time</td>
-        <input [(ngModel)]='newRecipe.time'>
-        <td>ingridiens</td>
-        <input [(ngModel)]='newRecipe.ingridiens'>
-        <td>desc</td>
-        <input [(ngModel)]='newRecipe.desc'>
-      </tr>
-    </tbody>
-  </table>
-</div>
 <app-button (clickButton)='addRecipe()'><span>Dodaj</span></app-button>
 <app-button (clickButton)='goToRecipes()'><span>Wróc</span></app-button>
+
+
+<form [formGroup]="recipe" >
+  <div>
+    Tytul<input formControlName='title'>
+  </div>
+  <div>
+    Zdjecie<input formControlName='poster'>
+  </div>
+  <div>
+    Kategoria
+    <select formControlName='category'>
+      <option value="breakfast">Śniadanie</option>
+      <option value="lunch">Lunch</option>
+      <option value="dinner">Obiad</option>
+      <option value="desert">Desery</option>
+      <option value="supper">Kolacja</option>
+    </select>
+  </div>
+  <div>
+    Czas<input formControlName='time'>
+  </div>
+  <div>
+    Opis<input formControlName='desc'>
+  </div>
+  <div formArrayName="ingridiens"
+    *ngFor="let item of recipe.controls['ingridiens']['controls']; let i = index">
+    <div [formGroupName]="i">
+      Skladnik
+      <input formControlName='name'>
+    </div>
+  </div>
+  <button type="button" (click)="addNext()">Add Next</button>
+  <button type="submit" (click)="submit()">Submit</button>
+
+</form>

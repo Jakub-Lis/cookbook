@@ -12,14 +12,14 @@ import { switchMap } from 'rxjs/operators';
 })
 export class RecipesDetailsComponent implements OnInit {
 
-  recipeDetail: Observable<RecipeInterface>;
+  recipeDetail$: Observable<RecipeInterface>;
 
   constructor(private http: HttpService, private route: ActivatedRoute, private router: Router) {
   }
 
 
   ngOnInit(): void {
-    this.recipeDetail = this.route.paramMap.pipe(
+    this.recipeDetail$ = this.route.paramMap.pipe(
       switchMap((id: ParamMap) => this.http.getRecipe(id.get('id')))
     );
   }

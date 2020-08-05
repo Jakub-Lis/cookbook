@@ -3,11 +3,12 @@
     {{title}}
   </h1>
   <ul class="links__subpages">
-    <li><a [routerLink]='["/kategorie"]' [routerLinkActive] = '["active"]'>Kategorie</a></li>
+    <app-categories></app-categories>
     <li><a [routerLink]='["/dodanie-przepisu"]' [routerLinkActive] = '["active"]'>Dodawanie przepisu</a></li>
   </ul>
 </nav>
 <router-outlet></router-outlet>
+
 
 
 

@@ -21,7 +21,7 @@ export class ChangeRecipeFormComponent implements OnInit {
     poster: '',
     category: '',
     time: '',
-    ingridiens: '',
+    ingridiens: [],
     desc: '',
   };
 
@@ -38,7 +38,7 @@ export class ChangeRecipeFormComponent implements OnInit {
     poster: '',
     category: '',
     time: '',
-    ingridiens: '',
+    ingridiens: [],
     desc: '',
   };
 }
