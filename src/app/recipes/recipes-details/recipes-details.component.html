@@ -1,6 +1,6 @@
 
 <div class="row" *ngIf="recipeDetail$ | async as recipe">
-  <div class="col s4"><img [src]="recipe.poster" /></div>
+  <div class="col s4"><img [src]="recipe.poster"/></div>
   <table class="col s8">
     <tbody>
       <tr>
@@ -12,15 +12,13 @@
         <td>{{ recipe.category }}</td>
       </tr>
       <tr>
-        <td>Czas</td>
+        <td>Czas:</td>
         <td>{{ recipe.time }}</td>
       </tr>
-      <tr>
-        <td>Składniki</td>
-        <td *ngFor="let ing of recipe.ingridiens">{{ ing.name}}</td>
+      <tr>Składniki
+        <li *ngFor="let ing of recipe.ingridiens">{{ ing.name}}</li>
       </tr>
-      <tr>
-        <td>Opis:</td>
+      <tr>Opis:
         <td>{{ recipe.desc }}</td>
       </tr>
     </tbody>
